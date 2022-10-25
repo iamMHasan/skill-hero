@@ -7,6 +7,7 @@ import Courses from './components/Courses';
 import Blog from './components/Blog';
 import Coursedetails from './components/Coursedetails';
 import Checkout from './components/Checkout';
+import Errorpage from './components/Errorpage';
 
 function App() {
   const router = createBrowserRouter([
@@ -14,6 +15,10 @@ function App() {
       path: '/',
       element: <Main></Main>,
       children: [
+        {
+          path: '*',
+          element : <Errorpage></Errorpage>
+        },
         {
           path: '/',
           element: <Home></Home>
@@ -33,9 +38,9 @@ function App() {
           loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
         },
         {
-          path : '/checkout/:id',
-          element : <Checkout></Checkout>,
-          loader : ({params}) => fetch(`http://localhost:5000/checkout/${params.id}`)
+          path: '/checkout/:id',
+          element: <Checkout></Checkout>,
+          loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
         }
       ]
     },
