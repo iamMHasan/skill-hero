@@ -8,6 +8,8 @@ import Blog from './components/Blog';
 import Coursedetails from './components/Coursedetails';
 import Checkout from './components/Checkout';
 import Errorpage from './components/Errorpage';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,6 +43,14 @@ function App() {
           path: '/checkout/:id',
           element: <Checkout></Checkout>,
           loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
+        },
+        {
+          path : '/login',
+          element : <Login></Login>
+        },
+        {
+          path : '/register',
+          element : <Register></Register>
         }
       ]
     },
