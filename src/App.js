@@ -5,6 +5,7 @@ import Home from './components/Home';
 import Main from './layout/Main';
 import Courses from './components/Courses';
 import Blog from './components/Blog';
+import Coursedetails from './components/Coursedetails';
 
 function App() {
   const router = createBrowserRouter([
@@ -24,6 +25,11 @@ function App() {
         {
           path : '/blog',
           element : <Blog></Blog>
+        },
+        {
+          path : '/courses/:id',
+          element : <Coursedetails></Coursedetails>,
+          loader : ({params}) => fetch(`http://localhost:5000/courses/${params.id}`)
         }
       ]
     },
