@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { createContext } from 'react';
-import {getAuth, GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth'
+import {createUserWithEmailAndPassword, getAuth, GithubAuthProvider, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from 'firebase/auth'
 import app from '../firebase/firebase.config';
 import { useState } from 'react';
 
@@ -9,8 +9,9 @@ export const AuthContext = createContext()
 
 const Authprovider = ({children}) => {
     const [user, setUser] = useState('')
-    // google auth
     const googleProvider = new GoogleAuthProvider()
+    const gitHubProvider = new GithubAuthProvider()
+
     // method for google login
     const loginWithGoogle = () => {
         return signInWithPopup(auth, googleProvider)
@@ -19,6 +20,18 @@ const Authprovider = ({children}) => {
     const logOutFromAll = () => {
         return signOut(auth)
     }
+    // method for github login
+    const loginWithGithub = () => {
+        return signInWithPopup(auth, gitHubProvider)
+    }
+    // method for create user
+    const createUser = (email, password) => {
+        createUserWithEmailAndPassword(auth, email, password)
+    }
+    // method for email login
+    const loginWithMail = (email, password) => {
+        return signInWithEmailAndPassword(auth,email,password)
+    }
     // onauth state change
     useEffect(()=>{
         const unsubscribed = onAuthStateChanged(auth, currentUser =>{
@@ -26,7 +39,7 @@ const Authprovider = ({children}) => {
         })
         return ()=> unsubscribed()
     },[])
-    const authInfo = {user,loginWithGoogle,logOutFromAll}
+    const authInfo = {user,loginWithGoogle,logOutFromAll,loginWithGithub,loginWithMail}
     return (
         <AuthContext.Provider value={authInfo}>
             {children}
