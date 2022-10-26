@@ -1,10 +1,18 @@
 import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom'
+import { jsPDF } from 'jspdf'
 
 const Coursedetails = () => {
+    // pdf
+    const pdfGenerator = () => {
+        const doc = new jsPDF('landscape', 'px', 'a4', 'false')
+        doc.text(60, 60 ,`${more_details_body}` );
+        doc.save("details.pdf");
+    }
     const courseDetails = useLoaderData()
     console.log(courseDetails);
-    const { image, name, details ,id } = courseDetails
+    const { image, name, details, id,more_details_heading,more_details_body
+    } = courseDetails
     return (
         <div className='mb-3'>
             <div className="p-5 mx-auto sm:p-10 md:p-16  text-gray-100">
@@ -17,7 +25,7 @@ const Coursedetails = () => {
                             </div>
                             <div className='flex items-center'>
                                 <p className='mr-3'>Get more information about this course</p>
-                                <button className='p-2 rounded bg-white text-red-500'>Download Now</button>
+                                <button onClick={pdfGenerator} className='p-2 rounded bg-white text-red-500'>Download Now</button>
                             </div>
                         </div>
                     </div>
@@ -38,6 +46,8 @@ const Coursedetails = () => {
             </div>
         </div>
     );
+
+
 };
 
 export default Coursedetails;

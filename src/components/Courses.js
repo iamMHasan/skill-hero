@@ -11,7 +11,7 @@ const Courses = () => {
                 {
                     courses.map(course => (
                         <Link to={`/courses/${course.id}`}>
-                            <p className='flex flex-col p-2 hover:text-white cursor-pointer font-bold'>{course.name}</p>
+                            <p key={course.id} className='flex flex-col p-2 hover:text-white cursor-pointer font-bold'>{course.name}</p>
                         </Link>
                     ))
                 }
@@ -20,7 +20,7 @@ const Courses = () => {
                 <div className='grid grid-cols-1 md:grid-cols-3 gap-1 md:gap-3 '>
                     {
                         courses.map(course => (
-                            <div className="max-w-xs rounded-md shadow-md bg-gray-900 text-gray-100 p-1">
+                            <div key={course.id} className="max-w-xs rounded-md shadow-md bg-gray-900 text-gray-100 p-1">
                                 <img src={course.image} alt="" className="object-cover object-center w-full rounded-t-md h-[200px]  md:h-72" />
                                 <div className="flex flex-col justify-between p-6 space-y-8">
                                     <div className="space-y-2">

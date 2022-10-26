@@ -43,6 +43,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(e => console.log(e))
     }
@@ -52,6 +53,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user
                 console.log(user);
+                navigate(from, { replace: true });
             })
             .catch(e => console.log(e))
     }
@@ -71,7 +73,7 @@ const Login = () => {
                     </div>
                     <button className="block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400">Sign in</button>
                 </form>
-                <p>{error.message}</p>
+                <p className='text-red-900'>{error.message}</p>
                 <p className="text-xs text-center sm:px-6 dark:text-gray-400">Dont Have an account?
                     <Link rel="noopener noreferrer" to='/register' className="underline dark:text-gray-100">Sign up</Link>
                 </p>

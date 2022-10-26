@@ -2,14 +2,15 @@ import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
 import { AuthContext } from '../AuthProvider/Authporvider';
+import logo from '../assets/logo.png'
 
 const Navbar = () => {
-    const { user,providerLogOut } = useContext(AuthContext)
+    const { user, providerLogOut } = useContext(AuthContext)
     console.log(user);
-    const handleLogOut = () =>{
+    const handleLogOut = () => {
         providerLogOut()
-        .then(()=>{})
-        .catch(err => console.log(err))
+            .then(() => { })
+            .catch(err => console.log(err))
     }
     return (
         <div>
@@ -26,7 +27,10 @@ const Navbar = () => {
 
                         </ul>
                     </div>
-                    <a className="btn btn-ghost normal-case text-xl">Skill Hero.</a>
+                    <div className='flex'>
+                        <img style={{ height: "50px" }} src={logo} alt="" />
+                        <Link to='/' className="btn btn-ghost normal-case text-xl">Skill Hero.</Link>
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -37,17 +41,25 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link to='/login'>
-                        {user?.uid ? 
-                        <button onClick={handleLogOut} className="btn">Log Out</button>
+                        {user?.uid ?
+                            <button onClick={handleLogOut} className="btn">Log Out</button>
                             :
                             <button className="btn">Log In</button>}
                     </Link>
-                   <p> {user?.displayName}</p>
-                   <img className='rounded-full h-10' src={user?.photoURL} alt="" />
+                    <img className='rounded-full h-10' title={user?.displayName} src={user?.photoURL} alt="" />
                     <div className='ml-3'>
                         <img className='rounded-full h-14' alt="" />
                     </div>
                 </div>
+                <label for="Toggle1" className="inline-flex items-center space-x-4 cursor-pointer text-gray-100">
+                    <span>dark</span>
+                    <span className="relative">
+                        <input id="Toggle1" type="checkbox" className="hidden peer" />
+                        <div className="w-10 h-6 rounded-full shadow-inner bg-gray-400 peer-checked:bg-violet-400"></div>
+                        <div className="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto bg-gray-800"></div>
+                    </span>
+                    <span>light</span>
+                </label>
             </div>
         </div>
     );

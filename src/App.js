@@ -28,7 +28,7 @@ function App() {
         },
         {
           path: '/courses',
-          loader: () => fetch('http://localhost:5000/courses'),
+          loader: () => fetch('https://skill-hero-server.vercel.app/courses'),
           element: <Courses></Courses>,
         },
         {
@@ -38,12 +38,12 @@ function App() {
         {
           path: '/courses/:id',
           element: <Coursedetails></Coursedetails>,
-          loader: ({ params }) => fetch(`http://localhost:5000/courses/${params.id}`)
+          loader: ({ params }) => fetch(`https://skill-hero-server.vercel.app/courses/${params.id}`)
         },
         {
           path: '/checkout/:id',
           element: <Privateroutes><Checkout></Checkout></Privateroutes>,
-          loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
+          loader: ({ params }) => fetch(`https://skill-hero-server.vercel.app/checkout/${params.id}`)
         },
         {
           path : '/login',
