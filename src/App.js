@@ -8,8 +8,9 @@ import Blog from './components/Blog';
 import Coursedetails from './components/Coursedetails';
 import Checkout from './components/Checkout';
 import Errorpage from './components/Errorpage';
-import Login from './components/Login';
 import Register from './components/Register';
+import Login from './components/Login';
+import Privateroutes from './Privateroutes/Privateroutes';
 
 function App() {
   const router = createBrowserRouter([
@@ -41,7 +42,7 @@ function App() {
         },
         {
           path: '/checkout/:id',
-          element: <Checkout></Checkout>,
+          element: <Privateroutes><Checkout></Checkout></Privateroutes>,
           loader: ({ params }) => fetch(`http://localhost:5000/checkout/${params.id}`)
         },
         {

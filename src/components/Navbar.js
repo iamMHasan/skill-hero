@@ -1,16 +1,15 @@
 import React from 'react';
 import { useContext } from 'react';
 import { Link } from 'react-router-dom'
-import { AuthContext } from '../Authprovider/Authprovider';
+import { AuthContext } from '../AuthProvider/Authporvider';
 
 const Navbar = () => {
-    const {logOutFromAll, user} = useContext(AuthContext)
+    const { user,providerLogOut } = useContext(AuthContext)
     console.log(user);
-    // log out 
-    const handleLogOut = () => {
-        logOutFromAll()
+    const handleLogOut = () =>{
+        providerLogOut()
         .then(()=>{})
-        .catch(e => console.log(e))
+        .catch(err => console.log(err))
     }
     return (
         <div>
@@ -38,12 +37,15 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end">
                     <Link to='/login'>
-                       {user?.uid ?  <button onClick={handleLogOut} className="btn">Log Out</button>
-                       :  <button className="btn">Log In</button>
-                    }
+                        {user?.uid ? 
+                        <button onClick={handleLogOut} className="btn">Log Out</button>
+                            :
+                            <button className="btn">Log In</button>}
                     </Link>
+                   <p> {user?.displayName}</p>
+                   <img className='rounded-full h-10' src={user?.photoURL} alt="" />
                     <div className='ml-3'>
-                    <img className='rounded-full h-14' src={user?.photoURL} alt="" />
+                        <img className='rounded-full h-14' alt="" />
                     </div>
                 </div>
             </div>
