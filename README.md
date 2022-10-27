@@ -1,5 +1,7 @@
 # Welcome to Skill Hero.
 
+## live - https://skill-hero-a043c.web.app/blog
+
 ## Website's different features and functionality
 
 * Skill Hero. has listed 6 courses in different filed of programming language
