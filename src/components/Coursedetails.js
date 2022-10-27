@@ -6,7 +6,7 @@ const Coursedetails = () => {
     // pdf
     const pdfGenerator = () => {
         const doc = new jsPDF('landscape', 'px', 'a4', 'false')
-        doc.text(60, 60 ,`${more_details_body}` );
+        doc.text(60, 60 ,`${more_details_heading}` );
         doc.save("details.pdf");
     }
     const courseDetails = useLoaderData()
